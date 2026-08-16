@@ -9,6 +9,25 @@
 *{box-sizing:border-box}html,body{margin:0}body{min-height:100vh;font-family:ui-rounded,"SF Pro Rounded","Segoe UI",system-ui,sans-serif;color:var(--ink);background:radial-gradient(circle at 20% 10%,rgba(255,114,182,.20),transparent 28%),radial-gradient(circle at 80% 15%,rgba(159,122,234,.18),transparent 30%),radial-gradient(circle at 50% 85%,rgba(244,201,93,.18),transparent 28%),linear-gradient(145deg,#fff7fb,#f7f2ff);overflow-x:hidden}
 .sparkles,.sparkles:before,.sparkles:after{position:fixed;inset:0;pointer-events:none;content:"";background-image:radial-gradient(circle,rgba(255,255,255,.95) 0 1px,transparent 1.5px),radial-gradient(circle,rgba(244,201,93,.8) 0 1.4px,transparent 2px);background-size:70px 70px,120px 120px;background-position:0 0,30px 20px;opacity:.65;animation:drift 18s linear infinite}@keyframes drift{to{background-position:0 180px,30px 260px}}
 main{width:min(920px,calc(100% - 28px));margin:auto;padding:48px 0 70px;position:relative}.shell{background:#ffffffd9;border:1px solid #fff;backdrop-filter:blur(18px);border-radius:32px;box-shadow:0 24px 70px rgba(83,55,102,.15);overflow:hidden}.top{padding:44px 30px 20px;text-align:center}.badge{display:inline-flex;gap:8px;align-items:center;padding:8px 13px;border-radius:999px;background:#fff;border:1px solid var(--line);font-size:13px;font-weight:700;text-transform:uppercase;color:#6f5b79}h1{margin:20px 0 10px;font-size:clamp(40px,8vw,76px);letter-spacing:-.05em;line-height:.95}.good{background:linear-gradient(90deg,var(--pink),var(--purple),var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent}.lead{font-size:clamp(18px,3vw,24px);margin:18px auto 0}.sub{color:var(--muted);margin:10px auto 0}.poll{padding:18px 26px 34px}.question{font-size:clamp(19px,3vw,26px);font-weight:800;line-height:1.3;margin:8px auto 22px;max-width:760px;text-align:center}.options{display:grid;gap:12px}.option{width:100%;text-align:left;border:1px solid var(--line);background:#fff;border-radius:20px;padding:16px 18px;font-size:16px;color:var(--ink);cursor:pointer;display:flex;align-items:center;gap:13px;transition:.16s;box-shadow:0 8px 24px rgba(80,58,95,.06)}.option:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(80,58,95,.10)}.emoji{width:42px;height:42px;display:grid;place-items:center;border-radius:14px;background:linear-gradient(135deg,#fff0f7,#f4efff);font-size:22px}.text{font-weight:700}.results{display:none;margin-top:22px;padding:20px;border-radius:24px;background:#ffffffc2;border:1px solid var(--line)}.results.show{display:block}.thanks{text-align:center;font-weight:800;font-size:18px;margin-bottom:16px}.row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;align-items:center;margin:12px 0}.label{font-size:14px;font-weight:700}.count{font-weight:800}.bar{grid-column:1/-1;height:10px;background:#eee7f1;border-radius:999px;overflow:hidden}.fill{height:100%;background:linear-gradient(90deg,var(--pink),var(--purple));transition:width .5s ease}.note,.footer{text-align:center;color:var(--muted);font-size:12px}.footer{padding:0 24px 34px;font-size:14px}.burst{position:fixed;pointer-events:none;font-size:20px;animation:burst .75s ease-out forwards;z-index:20}@keyframes burst{0%{opacity:0;transform:scale(.4)}20%{opacity:1}100%{opacity:0;transform:translate(var(--x),var(--y)) scale(1.2) rotate(220deg)}}@media(max-width:600px){main{padding-top:22px}.top{padding:34px 20px 18px}.poll{padding:14px 16px 28px}.shell{border-radius:24px}}
+
+.confetti-piece{
+  position:fixed;
+  top:-24px;
+  z-index:9999;
+  pointer-events:none;
+  border-radius:2px;
+  opacity:.95;
+  animation:confettiFall var(--fall) cubic-bezier(.18,.7,.35,1) forwards;
+}
+@keyframes confettiFall{
+  0%{transform:translate3d(0,-10vh,0) rotate(0deg);opacity:0}
+  8%{opacity:1}
+  100%{transform:translate3d(var(--drift),110vh,0) rotate(var(--spin));opacity:.85}
+}
+@media (prefers-reduced-motion: reduce){
+  .confetti-piece{display:none!important}
+}
+
 </style>
 </head>
 <body>
@@ -27,7 +46,7 @@ main{width:min(920px,calc(100% - 28px));margin:auto;padding:48px 0 70px;position
 <button class="option" data-i="1"><span class="emoji">🚶</span><span class="text">Take a walk</span></button>
 <button class="option" data-i="2"><span class="emoji">🍪</span><span class="text">Eat a snack</span></button>
 <button class="option" data-i="3"><span class="emoji">📱</span><span class="text">Text Nyna and tell her to hurry up</span></button>
-<button class="option" data-i="4"><span class="emoji">🛋️</span><span class="text">Nothing</span></button>
+<button class="option" data-i="4"><span class="emoji">🙅</span><span class="text">None of the above</span></button>
 </div>
 <div class="results" id="results" aria-live="polite">
 <div class="thanks" id="thanks">Vote recorded ✨</div>
@@ -38,7 +57,7 @@ main{width:min(920px,calc(100% - 28px));margin:auto;padding:48px 0 70px;position
 <div class="footer">Made with questionable restraint and excellent Saenz. ✨</div>
 </section></main>
 <script>
-const labels=["Do that chore I’ve been putting off","Take a walk","Eat a snack","Text Nyna and tell her to hurry up","Nothing"];
+const labels=["Do that chore I’ve been putting off","Take a walk","Eat a snack","Text Nyna and tell her to hurry up","None of the above"];
 const key="goodsaenzPollCounts_v1";
 let counts=JSON.parse(localStorage.getItem(key)||"[0,0,0,0,0]");
 function render(selected){
@@ -49,5 +68,28 @@ function render(selected){
 }
 function burst(x,y){const g=["✦","✨","★","✧","💖"];for(let i=0;i<14;i++){const s=document.createElement("div");s.className="burst";s.textContent=g[Math.floor(Math.random()*g.length)];s.style.left=x+"px";s.style.top=y+"px";s.style.setProperty("--x",(Math.random()*180-90)+"px");s.style.setProperty("--y",(Math.random()*-170-20)+"px");document.body.appendChild(s);setTimeout(()=>s.remove(),800)}}
 document.querySelectorAll(".option").forEach(btn=>btn.addEventListener("click",e=>{const i=+btn.dataset.i;counts[i]++;localStorage.setItem(key,JSON.stringify(counts));render(i);burst(e.clientX,e.clientY)}));
+
+function launchConfetti(){
+  if(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  const colors=["#ff72b6","#9f7aea","#f4c95d","#76d7c4","#ff9f68","#ffffff"];
+  const count=95;
+  for(let i=0;i<count;i++){
+    const p=document.createElement("div");
+    p.className="confetti-piece";
+    const w=5+Math.random()*7, h=8+Math.random()*10;
+    p.style.left=(Math.random()*100)+"vw";
+    p.style.width=w+"px";
+    p.style.height=h+"px";
+    p.style.background=colors[Math.floor(Math.random()*colors.length)];
+    p.style.setProperty("--fall",(3.6+Math.random()*3.8)+"s");
+    p.style.setProperty("--drift",(Math.random()*180-90)+"px");
+    p.style.setProperty("--spin",(Math.random()*900-450)+"deg");
+    p.style.animationDelay=(Math.random()*1.2)+"s";
+    document.body.appendChild(p);
+    setTimeout(()=>p.remove(),8500);
+  }
+}
+window.addEventListener("load",()=>setTimeout(launchConfetti,250));
+
 </script>
 </body></html>
