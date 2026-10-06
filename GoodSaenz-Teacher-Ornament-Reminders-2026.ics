@@ -6,11 +6,13 @@ METHOD:PUBLISH
 X-WR-CALNAME:GoodSaenz Teacher Ornament Reminders
 X-WR-TIMEZONE:America/Chicago
 BEGIN:VEVENT
+SEQUENCE:1
+LAST-MODIFIED:20261006T152724Z
 UID:goodsaenz-submit-teacher-ornament-order-2026@goodsaenz.com
 DTSTAMP:20261006T151311Z
 DTSTART;VALUE=DATE:20261024
 DTEND;VALUE=DATE:20261025
-SUMMARY:Submit teacher ornament order
+SUMMARY:ORDER DEADLINE - Submit teacher ornament order
 DESCRIPTION:Place your GoodSaenz teacher ornament order by today. Order for
  m: https://goodsaenz.com/Teacher-Ornaments-Form.html
 TRANSP:TRANSPARENT
@@ -18,32 +20,39 @@ STATUS:CONFIRMED
 URL:https://goodsaenz.com/Teacher-Ornaments-Form.html
 BEGIN:VALARM
 ACTION:DISPLAY
-DESCRIPTION:Submit teacher ornament order
+DESCRIPTION:ORDER DEADLINE - Submit teacher ornament order
 TRIGGER;VALUE=DATE-TIME:20261024T140000Z
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
+SEQUENCE:1
+LAST-MODIFIED:20261006T152724Z
 UID:goodsaenz-teacher-ornament-proof-approval-2026@goodsaenz.com
 DTSTAMP:20261006T151311Z
 DTSTART;VALUE=DATE:20261101
 DTEND;VALUE=DATE:20261102
-SUMMARY:Approval deadline for teacher ornament proof
+SUMMARY:PROOF APPROVAL DEADLINE - Approval deadline for teacher ornament pr
+ oof
 DESCRIPTION:Approve your GoodSaenz teacher ornament proof by today. Check y
  our email for the proof and approval instructions.
 TRANSP:TRANSPARENT
 STATUS:CONFIRMED
 BEGIN:VALARM
 ACTION:DISPLAY
-DESCRIPTION:Approval deadline for teacher ornament proof
+DESCRIPTION:PROOF APPROVAL DEADLINE - Approval deadline for teacher ornamen
+ t proof
 TRIGGER;VALUE=DATE-TIME:20261101T150000Z
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
+SEQUENCE:1
+LAST-MODIFIED:20261006T152724Z
 UID:goodsaenz-teacher-ornament-completion-delivery-2026@goodsaenz.com
 DTSTAMP:20261006T151311Z
 DTSTART;VALUE=DATE:20261205
 DTEND;VALUE=DATE:20261206
-SUMMARY:Teacher ornament completion and delivery
+SUMMARY:NYNA’S COMPLETION DEADLINE - Teacher ornament completion and deli
+ very
 DESCRIPTION:Completion date will vary depending on how many orders are rece
  ived and when. A more specific completion date will be provided as availab
  le. This calendar date is a planning reminder\, not a confirmed delivery a
@@ -53,7 +62,8 @@ TRANSP:TRANSPARENT
 STATUS:CONFIRMED
 BEGIN:VALARM
 ACTION:DISPLAY
-DESCRIPTION:Teacher ornament completion and delivery
+DESCRIPTION:NYNA’S COMPLETION DEADLINE - Teacher ornament completion and 
+ delivery
 TRIGGER;VALUE=DATE-TIME:20261205T150000Z
 END:VALARM
 END:VEVENT
