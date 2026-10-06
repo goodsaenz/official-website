@@ -1,0 +1,60 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//GoodSaenz//Teacher Ornament Reminders//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:GoodSaenz Teacher Ornament Reminders
+X-WR-TIMEZONE:America/Chicago
+BEGIN:VEVENT
+UID:goodsaenz-submit-teacher-ornament-order-2026@goodsaenz.com
+DTSTAMP:20261006T151311Z
+DTSTART;VALUE=DATE:20261024
+DTEND;VALUE=DATE:20261025
+SUMMARY:Submit teacher ornament order
+DESCRIPTION:Place your GoodSaenz teacher ornament order by today. Order for
+ m: https://goodsaenz.com/Teacher-Ornaments-Form.html
+TRANSP:TRANSPARENT
+STATUS:CONFIRMED
+URL:https://goodsaenz.com/Teacher-Ornaments-Form.html
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Submit teacher ornament order
+TRIGGER;VALUE=DATE-TIME:20261024T140000Z
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:goodsaenz-teacher-ornament-proof-approval-2026@goodsaenz.com
+DTSTAMP:20261006T151311Z
+DTSTART;VALUE=DATE:20261101
+DTEND;VALUE=DATE:20261102
+SUMMARY:Approval deadline for teacher ornament proof
+DESCRIPTION:Approve your GoodSaenz teacher ornament proof by today. Check y
+ our email for the proof and approval instructions.
+TRANSP:TRANSPARENT
+STATUS:CONFIRMED
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Approval deadline for teacher ornament proof
+TRIGGER;VALUE=DATE-TIME:20261101T150000Z
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:goodsaenz-teacher-ornament-completion-delivery-2026@goodsaenz.com
+DTSTAMP:20261006T151311Z
+DTSTART;VALUE=DATE:20261205
+DTEND;VALUE=DATE:20261206
+SUMMARY:Teacher ornament completion and delivery
+DESCRIPTION:Completion date will vary depending on how many orders are rece
+ ived and when. A more specific completion date will be provided as availab
+ le. This calendar date is a planning reminder\, not a confirmed delivery a
+ ppointment. Orders will be available for pickup no later than the first we
+ ek of December.
+TRANSP:TRANSPARENT
+STATUS:CONFIRMED
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Teacher ornament completion and delivery
+TRIGGER;VALUE=DATE-TIME:20261205T150000Z
+END:VALARM
+END:VEVENT
+END:VCALENDAR
