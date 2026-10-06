@@ -222,8 +222,7 @@ if(file)data.attachment=await readFile(file);const serialized=JSON.stringify(dat
 (function initDraggableRibbon(){
  const ribbon=document.querySelector('.deadline-ribbon');
  if(!ribbon)return;
- const motion=window.matchMedia('(prefers-reduced-motion: reduce)');
- let down=false,mouse=false,startX=0,startY=0,startScroll=0,dragged=false,suppressClick=false,pauseUntil=0,last=0;
+ let down=false,mouse=false,startX=0,startY=0,startScroll=0,dragged=false,suppressClick=false,pauseUntil=0,last=0,position=ribbon.scrollLeft;
  function delay(){pauseUntil=performance.now()+3000;}
  ribbon.addEventListener('pointerdown',e=>{
    down=true;mouse=e.pointerType==='mouse';startX=e.clientX;startY=e.clientY;startScroll=ribbon.scrollLeft;dragged=false;suppressClick=false;delay();
@@ -244,10 +243,10 @@ if(file)data.attachment=await readFile(file);const serialized=JSON.stringify(dat
  ribbon.addEventListener('keydown',e=>{if(e.key==='ArrowLeft'||e.key==='ArrowRight'){e.preventDefault();ribbon.scrollLeft+=e.key==='ArrowRight'?100:-100;delay();}});
  function tick(now){
    const dt=last?Math.min(now-last,50):0;last=now;
-   if(!motion.matches&&!document.hidden&&!down&&now>pauseUntil){
+   if(!document.hidden&&!down&&now>=pauseUntil){
      const loop=ribbon.querySelector('.ribbon-track').scrollWidth/2;
-     if(loop>ribbon.clientWidth){ribbon.scrollLeft+=dt*.038;if(ribbon.scrollLeft>=loop)ribbon.scrollLeft-=loop;}
-   }
+     if(loop>ribbon.clientWidth){position+=dt*.038;if(position>=loop)position%=loop;ribbon.scrollLeft=position;}
+   }else{position=ribbon.scrollLeft;}
    window.requestAnimationFrame(tick);
  }
  window.requestAnimationFrame(tick);
