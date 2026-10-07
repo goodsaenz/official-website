@@ -156,6 +156,8 @@ form .card .mini-offer #miniDetailsField{margin-top:18px}
 <script>
 // Public endpoint only. Never put a function key, connection string, or token here.
 const ORDER_API_URL = '';
+// Payment stays server-controlled. When Azure later returns { orderId, checkoutUrl },
+// this page hands the customer to Stripe Checkout. Until then, the existing request flow is unchanged.
 const $ = id => document.getElementById(id);
 const form = $('orderForm');
 function newRequestId(){
@@ -180,7 +182,21 @@ function readFile(file){return new Promise((resolve,reject)=>{const reader=new F
 form.addEventListener('submit',async e=>{e.preventDefault();if(!form.reportValidity())return;const data=Object.fromEntries(new FormData(form));data.nameCount=Number(data.nameCount);data.miniAddOn=$('miniAddOn').checked;data.miniDetails=data.miniAddOn?($('miniDetails').value||'').trim():'';data.names=data.names.trim();data.spellingConfirmed=$('spelling').checked;data.agreementConfirmed=$('agreement').checked;const file=$('classList').files[0];if(!data.names&&!file){status('Please paste your student names or upload a class list.',true);$('names').focus();return;}if(file&&file.size>4*1024*1024){status('Please choose a file smaller than 4 MB.',true);return;}
 $('submit').disabled=true;
 try{if(!ORDER_API_URL){const b=basePrice(data.nameCount,data.ornamentType,data.charmTreatment);const total=b===null?'TBD — custom pricing'+(data.miniAddOn?'; mini add-on +$25':''):'$'+(b+(data.miniAddOn?25:0))+' including applicable taxes; local pickup or delivery by Ashleigh';const lines=['GoodSaenz custom class ornament request','',...Object.entries(data).filter(([k])=>!['website'].includes(k)).map(([k,v])=>`${k}: ${v}`),'Estimated subtotal: '+total];const mail='mailto:nyna@goodsaenz.com?subject='+encodeURIComponent('Class ornament request — '+data.teacher)+'&body='+encodeURIComponent(lines.join('\n'));if(mail.length>7000){status('This list is too long for a prepared email. Please email your request and class list directly to nyna@goodsaenz.com.',true);return;}window.location.href=mail;status('Your email app should open with the request. Please press Send there. The website has not submitted an order.');return;}
-if(file)data.attachment=await readFile(file);const serialized=JSON.stringify(data);if(lastPayload&&lastPayload!==serialized)requestId=newRequestId();lastPayload=serialized;status('Sending your request…');const response=await fetch(ORDER_API_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({...data,requestId}),signal:AbortSignal.timeout(45000)});const result=await response.json();if(!response.ok)throw new Error(result.error||'We couldn’t confirm your request. Please try again.');if(!result.orderId)throw new Error('We couldn’t confirm your request. Please try again.');form.hidden=true;$('success').hidden=false;$('receipt').textContent='Your reference is '+result.orderId+'.';$('success').focus();}catch(error){status(error.name==='TimeoutError'?'The connection timed out. Retry to check the same request without creating a duplicate.':error.message||'Connection failed. Please try again.',true);}finally{$('submit').disabled=false;}});
+if(file)data.attachment=await readFile(file);const serialized=JSON.stringify(data);if(lastPayload&&lastPayload!==serialized)requestId=newRequestId();lastPayload=serialized;status('Sending your request…');const response=await fetch(ORDER_API_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({...data,requestId}),signal:AbortSignal.timeout(45000)});const result=await response.json();if(!response.ok)throw new Error(result.error||'We couldn’t confirm your request. Please try again.');if(!result.orderId)throw new Error('We couldn’t confirm your request. Please try again.');
+// PAYMENT-READY HANDOFF: Azure may return a Stripe-hosted checkoutUrl when payment is appropriate.
+// Never put Stripe secret keys, webhook secrets, bank details, or other credentials in this HTML.
+if(result.checkoutUrl){
+  let checkout;
+  try{checkout=new URL(result.checkoutUrl);}
+  catch{throw new Error('We created your request, but the secure payment link was invalid. Please contact GoodSaenz with reference '+result.orderId+'.');}
+  if(checkout.protocol!=='https:'||!checkout.hostname.endsWith('stripe.com')){
+    throw new Error('We created your request, but could not verify the secure payment destination. Please contact GoodSaenz with reference '+result.orderId+'.');
+  }
+  status('Request saved. Opening secure payment…');
+  window.location.assign(checkout.href);
+  return;
+}
+form.hidden=true;$('success').hidden=false;$('receipt').textContent='Your reference is '+result.orderId+'.';$('success').focus();}catch(error){status(error.name==='TimeoutError'?'The connection timed out. Retry to check the same request without creating a duplicate.':error.message||'Connection failed. Please try again.',true);}finally{$('submit').disabled=false;}});
 
 // Decorative motion never gates form initialization or interaction.
 (function initOpalScroll(){
