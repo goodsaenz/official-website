@@ -49,6 +49,18 @@ footer{text-align:center;padding:20px 28px 36px;color:#746f79;font-size:12px}
 @media(max-width:540px){header{padding:23px 18px 12px}main{padding:28px 16px 12px}.hero{margin-bottom:24px}.hero h1{font-size:clamp(32px,9vw,43px)}.main-card{border-radius:22px;padding:27px 18px}.summary{padding:3px 14px}.sum-label{font-size:13px}.sum-value{font-size:14px}.sum-value.total{font-size:20px}.buttons{flex-direction:column}.btn{width:100%}.top-link{font-size:12px;padding:8px 10px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}body::before{display:none}.loader{animation:none}}
 </style>
+<style id="goodsaenz-save-confirmation">
+#saveConfirmation{cursor:pointer;font-family:inherit}
+#saveConfirmation[hidden]{display:none!important}
+@media print{
+  body{background:white!important;color:#262334!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  header,.buttons,.top-link,.preview-label,.loader{display:none!important}
+  main{padding:12px 0!important;max-width:none!important}
+  .hero{margin-bottom:18px!important}
+  .main-card{box-shadow:none!important;border:1px solid #bcaed2!important;break-inside:avoid}
+  footer{margin-top:14px!important}
+}
+</style>
 </head><body>
 <header><a class="brand" href="./" aria-label="GoodSaenz home">Good<span>Saenz</span></a><a class="top-link" href="Teacher-Ornaments-Form.html">← Back to ornaments</a></header>
 <main>
@@ -82,6 +94,7 @@ footer{text-align:center;padding:20px 28px 36px;color:#746f79;font-size:12px}
     <div class="notice"><strong>A little peace of mind:</strong> You can request a refund up until you approve your proof. Once you approve it, changes, add-ons, and refunds are no longer available.</div>
   </div>
   <div class="buttons">
+    <button class="btn" type="button" id="saveConfirmation" hidden aria-label="Save or print your order confirmation">↓ Save this confirmation</button>
     <a class="btn" id="homeLink" href="./">Back to GoodSaenz ♡</a>
     <a class="btn secondary" id="shopLink" href="Teacher-Ornaments-Form.html">Order another ornament</a>
     <a class="btn secondary" id="helpLink" href="mailto:nyna@goodsaenz.com?subject=GoodSaenz%20order%20help" hidden>Email GoodSaenz for help</a>
@@ -109,12 +122,14 @@ footer{text-align:center;padding:20px 28px 36px;color:#746f79;font-size:12px}
     $('statusEyebrow').textContent=eyebrow;$('statusTitle').textContent=title;$('statusCopy').textContent=copy;
   }
   function showHelp(){ $('helpLink').hidden=false; }
+  $('saveConfirmation').addEventListener('click',()=>window.print());
   function confirmed(v){
     display('Payment received ✦','Your order is confirmed!','Thank you for trusting GoodSaenz with something special. We can’t wait to make it yours.','check');
     $('orderNumber').textContent=v.orderId;
     $('paymentStatus').textContent='Paid ✓';
     $('paymentTotal').textContent=new Intl.NumberFormat('en-US',{style:'currency',currency:'USD'}).format(v.amountCents/100);
     $('summary').hidden=false;$('next').hidden=false;
+    if(!preview) $('saveConfirmation').hidden=false;
     $('helpLink').href='mailto:nyna@goodsaenz.com?subject='+encodeURIComponent('Question about order '+v.orderId);
   }
   if(preview){
