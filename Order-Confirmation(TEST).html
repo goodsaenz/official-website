@@ -99,7 +99,7 @@ footer{text-align:center;padding:20px 28px 36px;color:#746f79;font-size:12px}
   const isTest=decodeURIComponent(location.pathname).includes('(TEST)');
   const preview=isTest && params.get('preview')==='1';
   const session=params.get('session_id')||'';
-  if(isTest){$('shopLink').href='Teacher-Ornaments-Form(TEST).html';document.querySelector('.top-link').href='Teacher-Ornaments-Form(TEST).html';}
+  // The order-again and back-to-ornaments links always use the live order form, even on this TEST confirmation page.
   const checkSvg='<svg viewBox="0 0 48 48"><path d="M9 24 19 34 40 13"/></svg>';
   const clockSvg='<svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="17"/><path d="M24 14v11l8 5"/></svg>';
   const questionSvg='<svg viewBox="0 0 48 48"><path d="M17 18a8 8 0 1 1 12 7c-4 3-5 4-5 8"/><path d="M24 39h.01"/></svg>';
