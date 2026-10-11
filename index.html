@@ -234,6 +234,11 @@ footer{padding:26px 0 43px;border-top:1px solid #e4d6e9;background:#fff8;backdro
 @media(max-width:720px){.hero-art{min-height:446px}.photo-stack{inset:0 0 42px}.photo-stack .deck-card{width:65%;max-width:270px;height:315px}.hero-art .hero-label.bottom{bottom:16%}.deck-hint{bottom:0}}
 @media(max-width:390px){.photo-stack .deck-card{height:290px}.hero-art{min-height:413px}.hero-art .hero-label.bottom{bottom:17%}}
 @media(prefers-reduced-motion:reduce){.photo-stack .deck-card{transition:none!important}.photo-stack .deck-card.is-tucking{animation:none!important}}
+
+/* Small pronunciation note beneath the GoodSaenz wordmark. */
+.brand-lockup{display:flex;flex-direction:column;align-items:flex-start;min-width:0}
+.brand-pronunciation{margin:4px 0 0;color:var(--muted);font-size:clamp(11px,1.2vw,13px);line-height:1.4;font-weight:450;letter-spacing:0}
+@media(max-width:480px){.brand-pronunciation{font-size:11px;max-width:240px}}
 </style>
 <link rel="icon" type="image/png" sizes="64x64" href="/favicon.png?v=20261008b">
 <link rel="icon" type="image/x-icon" href="/favicon.ico?v=20261008b">
@@ -249,7 +254,10 @@ a.brand.brand-image{display:inline-flex;align-items:center;flex-shrink:0;line-he
 <div class="opal-field" aria-hidden="true"></div><div class="opal-sheen" aria-hidden="true"></div>
 <div class="site">
 <header class="header"><div class="wrap header-inner">
+<div class="brand-lockup">
 <a class="brand brand-image" href="./" aria-label="GoodSaenz home"><img src="goodsaenz-wordmark.png" alt="GoodSaenz" width="224" height="62"></a>
+<p class="brand-pronunciation">(it’s a play on words, friends. “good signs” 😉)</p>
+</div>
 
 </div></header>
 <main>
@@ -336,7 +344,7 @@ a.brand.brand-image{display:inline-flex;align-items:center;flex-shrink:0;line-he
  <div class="sidequest-inner"><details><summary><span>✦ An extremely serious research question <span class="small">(just for fun)</span></span><span aria-hidden="true">＋</span></summary><div class="poll-content"><p class="poll-lede">You unexpectedly have fifteen minutes to yourself. Obviously, you will…</p><div class="poll-options"><button class="poll-option" data-vote="0">🧹 Finally tackle that chore</button><button class="poll-option" data-vote="1">🚶 Go for a walk</button><button class="poll-option" data-vote="2">🍪 Find a snack immediately</button><button class="poll-option" data-vote="3">💌 Send GoodSaenz a wildly ambitious idea</button><button class="poll-option" data-vote="4">🛋️ Do absolutely nothing</button></div><div class="poll-result" id="poll-result" hidden aria-live="polite"><p id="poll-thanks">Vote recorded ✨</p><div id="poll-bars"></div></div><p class="poll-footnote">A completely unscientific little poll. Results stay on this device only.</p></div></details></div>
 </section>
 </main>
-<footer><div class="wrap footer-inner"><div><a class="brand brand-image" href="./"><img src="goodsaenz-wordmark.png" alt="GoodSaenz" width="224" height="62"></a><p class="footer-tag">Made with questionable restraint and excellent Saenz. ✨</p></div><nav class="footer-links" aria-label="Footer links"><a href="Teacher-Ornaments-Form.html">Teacher ornaments</a><a href="mailto:nyna@goodsaenz.com">Get in touch</a><a href="#hero-title">Back to top ↑</a></nav></div></footer>
+<footer><div class="wrap footer-inner"><div><a class="brand brand-image" href="./"><img src="goodsaenz-wordmark.png" alt="GoodSaenz" width="224" height="62"></a><p class="footer-tag">Website developed by Nyna with questionable restraint and excellent Saenz. ✨</p></div><nav class="footer-links" aria-label="Footer links"><a href="Teacher-Ornaments-Form.html">Teacher ornaments</a><a href="mailto:nyna@goodsaenz.com">Get in touch</a><a href="#hero-title">Back to top ↑</a></nav></div></footer>
 </div>
 <script>
 (function(){
