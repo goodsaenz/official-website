@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow,noarchive"><meta name="referrer" content="no-referrer">
+<title>GoodSaenz · Private checkout check</title>
+<style>
+:root{color-scheme:light;--ink:#302b3c;--accent:#6b4a98;--border:#dad5e6}*{box-sizing:border-box}
+body{margin:0;min-height:100vh;font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:var(--ink);background:radial-gradient(ellipse at 8% 10%,#e5d5fe,transparent 43%),radial-gradient(ellipse at 94% 14%,#b6eee8,transparent 45%),radial-gradient(ellipse at 70% 92%,#ffd7e6,transparent 55%),#f8f6fc;display:grid;place-items:center;padding:26px}
+main{width:min(100%,480px);padding:34px 30px;background:rgba(255,255,255,.91);border:1px solid #ffffffc2;border-radius:24px;box-shadow:0 14px 45px #40365a1a}
+.eyebrow{font-weight:800;letter-spacing:.18em;font-size:11px;color:#706484;text-transform:uppercase;margin:0 0 10px}
+h1{font-size:clamp(26px,5vw,34px);line-height:1.13;margin:0 0 16px;letter-spacing:-.04em}
+p{line-height:1.55;font-size:15px}.price{font-size:44px;font-weight:800;letter-spacing:-.06em;margin:0}
+.small{font-size:13px;color:#655e70}.important{background:#f5f2fa;border-radius:13px;padding:12px 14px;font-size:13px;line-height:1.55;margin:20px 0}
+label{display:block;font-size:13px;font-weight:750;margin:16px 0 7px}input{width:100%;padding:13px;border:1px solid var(--border);border-radius:12px;font:inherit;font-size:15px;background:#fff;outline-offset:3px}
+button{margin-top:18px;width:100%;background:linear-gradient(115deg,#8965b9,#5c62ac);border:0;padding:16px;border-radius:13px;color:white;font:inherit;font-weight:760;cursor:pointer}
+button:disabled{opacity:.5;cursor:progress}.notice{min-height:23px;margin-top:12px;font-size:13px}.error{color:#9f2848}.success{color:#315c4a}
+footer{font-size:11px;letter-spacing:.03em;text-align:center;color:#726b7b;margin-top:24px}
+</style></head><body><main>
+<p class="eyebrow">GoodSaenz · Internal only</p>
+<h1>Checkout systems test<span aria-hidden="true"> ✦</span></h1>
+<p>One tiny live payment to check the full Stripe → Azure → email workflow.</p>
+<p class="price">$0.50 <span style="font-size:15px;font-weight:500;letter-spacing:0">USD</span></p>
+<div class="important"><strong>TEST TRANSACTION — NOT A PRODUCT ORDER.</strong> No ornament, lamp, or other item will be made. A real 50¢ card charge and Stripe processing fees apply. You'll receive two test emails at your GoodSaenz inbox.</div>
+<form id="paymentForm" autocomplete="off">
+  <label for="code">Private access code</label>
+  <input id="code" name="code" type="password" required autocomplete="off" spellcheck="false" placeholder="Paste your test access code">
+  <button type="submit" id="pay">Continue to secure Stripe Checkout →</button>
+</form>
+<p id="status" class="notice" role="status" aria-live="polite"></p>
+<footer>GoodSaenz LLC · Internal payment verification · Not linked from the storefront</footer>
+</main><script>
+(()=>{
+  'use strict';
+  const API='https://goodsaenz-orders-api-b7ekfva3hedqfxfq.southcentralus-01.azurewebsites.net/api/payment-test';
+  const form=document.getElementById('paymentForm'),button=document.getElementById('pay'),status=document.getElementById('status');
+  // A completed Stripe checkout returns here; confirm it server-side through the
+  // existing read-only order-status endpoint, never from a query parameter alone.
+  const params=new URLSearchParams(window.location.search);
+  const sessionId=params.get('session_id');
+  if (sessionId) {
+    form.hidden=true;
+    status.textContent='Checking your test payment…';
+    const check=async()=>{
+      try {
+        const r=await fetch('https://goodsaenz-orders-api-b7ekfva3hedqfxfq.southcentralus-01.azurewebsites.net/api/order-status?session_id='+encodeURIComponent(sessionId),{cache:'no-store'});
+        const result=await r.json();
+        if(!r.ok)throw Error(result.error||'Could not check the payment.');
+        if(result.state==='confirmed'){
+          status.className='notice success';
+          status.textContent='Payment confirmed: '+result.orderId+' · $'+(result.amountCents/100).toFixed(2)+'. Check Outlook for the two TEST emails. No item will be fulfilled.';
+        } else if(result.state==='processing'){
+          status.textContent='Stripe received your payment. Azure is still recording it—reload to check again.';
+        } else {
+          status.textContent='Status: '+result.state+'. Check your Stripe Dashboard before retrying.';
+        }
+      }catch(e){status.className='notice error';status.textContent=(e.message||'Could not verify payment.')+' Please check Stripe before trying a new payment.';}
+    };
+    check();
+  } else if (params.has('canceled')) {
+    status.textContent='Checkout canceled. No payment was submitted on this attempt.';
+  }
+  let requestId;
+  function freshId(){return crypto.randomUUID();}
+  form.addEventListener('submit',async e=>{
+    e.preventDefault();
+    if(button.disabled)return;
+    const accessCode=document.getElementById('code').value;
+    if(!accessCode){status.textContent='Enter your private access code.';return;}
+    requestId ||= freshId();
+    button.disabled=true;status.className='notice';status.textContent='Creating a secure 50¢ test checkout…';
+    try{
+      const response=await fetch(API,{method:'POST',headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({requestId,accessCode}),cache:'no-store'});
+      const result=await response.json().catch(()=>({}));
+      if(!response.ok)throw Error(result.error||'Checkout could not start.');
+      if(result.paid){status.className='notice success';status.textContent='That test order is already paid. Refresh for a new test.';return;}
+      if(!result.checkoutUrl||!/^https:\/\/[^/]*stripe\.com\//i.test(result.checkoutUrl))throw Error('Unexpected checkout destination.');
+      window.location.assign(result.checkoutUrl);
+    }catch(error){status.className='notice error';status.textContent=error.message||'Something went wrong.';}
+    finally{button.disabled=false;}
+  });
+})();
+</script></body></html>
