@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#fbfaf7">
-<meta name="description" content="GoodSaenz is a small creative maker studio in Cypress, Texas, crafting custom pieces and thoughtful keepsakes. Browse our teacher ornament collection or get in touch with an idea.">
+<meta name="description" content="GoodSaenz is a creative maker studio in Cypress, Texas, making personalized acrylic glow lamps, custom teacher ornaments, and one-of-a-kind handmade keepsakes.">
 <title>goodsaenz</title>
 <!-- GoodSaenz share preview: Open Graph and social metadata -->
 <link rel="canonical" href="https://goodsaenz.com/">
@@ -239,6 +239,14 @@ footer{padding:26px 0 43px;border-top:1px solid #e4d6e9;background:#fff8;backdro
 .brand-lockup{display:flex;flex-direction:column;align-items:flex-start;min-width:0}
 .brand-pronunciation{margin:4px 0 0;color:var(--muted);font-size:clamp(11px,1.2vw,13px);line-height:1.4;font-weight:450;letter-spacing:0}
 @media(max-width:480px){.brand-pronunciation{font-size:11px;max-width:240px}}
+
+/* Homepage product expansion: Glow Lamps spotlight. */
+.feature + .feature{margin-top:24px}
+.lamp-feature-visual{display:grid;place-items:center;isolation:isolate;background:linear-gradient(140deg,#dedaf0,#dcefed 48%,#f2dce9)}
+.lamp-feature-visual::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 20% 12%,#f9def0a8,transparent 55%),radial-gradient(circle at 80% 88%,#bde9e4aa,transparent 53%);pointer-events:none}
+.lamp-feature-visual img{position:relative;z-index:1;display:block;width:100%;height:100%;min-height:360px;max-height:450px;object-fit:contain;object-position:center;border:0}
+.lamp-feature-label{position:absolute;z-index:2;bottom:20px;left:20px;right:20px;padding:10px 15px;width:max-content;max-width:calc(100% - 40px);border-radius:13px;background:#fffef5eb;border:1px solid #e4cdec;box-shadow:0 6px 22px #5d4f7430;color:#634b7c;font-weight:800;font-size:clamp(12px,1.6vw,15px);text-align:center}
+@media(max-width:720px){.lamp-feature-visual img{min-height:280px;max-height:330px}.lamp-feature-label{bottom:14px;left:14px;right:14px;max-width:calc(100% - 28px)}}
 </style>
 <link rel="icon" type="image/png" sizes="64x64" href="/favicon.png?v=20261008b">
 <link rel="icon" type="image/x-icon" href="/favicon.ico?v=20261008b">
@@ -265,7 +273,7 @@ a.brand.brand-image{display:inline-flex;align-items:center;flex-shrink:0;line-he
  <div class="hero-copy">
   <h1 id="hero-title" class="hero-tagline"><span class="hero-line">Good stuff.</span><span class="hero-line">Good people.</span><span class="hero-line iris-text">GoodSaenz.</span></h1>
   <p>We are in the business of creativity, of dreaming up ideas and bringing them to life. From idea to first sketch to design to the real deal of cutting and painting and assembling, every GoodSaenz piece is brought to life with joy, with heart, and of course with a little chaotic creative energy. 🤠💞⚡️</p>
-  <div class="actions"><a class="btn btn-primary" href="Teacher-Ornaments-Form.html">Explore teacher ornaments <span aria-hidden="true">↗</span></a><a class="btn btn-secondary" href="mailto:nyna@goodsaenz.com?subject=My%20GoodSaenz%20custom%20idea">Have a custom idea? <span aria-hidden="true">✦</span></a></div>
+  <div class="actions"><a class="btn btn-primary" href="Teacher-Ornaments-Form.html">Explore teacher ornaments <span aria-hidden="true">↗</span></a><a class="btn btn-secondary" href="Custom-Glow-Lamps.html">Explore glow lamps <span aria-hidden="true">✦</span></a><a class="btn btn-secondary" href="mailto:nyna@goodsaenz.com?subject=My%20GoodSaenz%20custom%20idea">Have a custom idea? <span aria-hidden="true">↗</span></a></div>
   <div class="tiny-note">Thoughtfully designed. Handmade in small batches. ✨</div>
  </div>
  <div class="hero-art" aria-label="Example of a handmade GoodSaenz ornament">
@@ -326,7 +334,20 @@ a.brand.brand-image{display:inline-flex;align-items:center;flex-shrink:0;line-he
 <div class="studio-strip" aria-label="GoodSaenz studio values"><span>Custom ideas</span><i aria-hidden="true">✧</i><span>Handmade details</span><i aria-hidden="true">✧</i><span>Very good Saenz</span></div>
 <section class="section wrap" id="currently-making" aria-labelledby="currently-title">
   <p class="section-kicker">The workbench is open</p>
-  <div class="section-head"><h2 id="currently-title">What's taking shape?</h2><p>We're starting with something special, and we have lots more ideas on the drawing board.</p></div>
+  <div class="section-head"><h2 id="currently-title">What's taking shape?</h2><p>Thoughtful little keepsakes, colorful ideas, and plenty of personality—made by hand, just for you.</p></div>
+  <article class="feature feature-lamps" aria-labelledby="lamps-feature-title">
+    <div class="feature-visual lamp-feature-visual">
+      <img src="Custom-Glow-Lamp-Florence.jpg" alt="Florence, a colorful hand-finished floral acrylic glow lamp illuminated on its LED base" width="1056" height="1408" loading="lazy" decoding="async">
+      <span class="lamp-feature-label" aria-hidden="true">✦ a little light. a lot of personality.</span>
+    </div>
+    <div class="feature-content">
+      <span class="chip">New at GoodSaenz</span>
+      <h3 id="lamps-feature-title">A little light. A lot of personality.</h3>
+      <p>Meet our Custom Glow Lamps: handmade acrylic keepsakes with personalized names and optional hand-filled UV resin color. Choose one of six favorite shapes or bring your own bright idea to life.</p>
+      <a class="btn btn-primary" href="Custom-Glow-Lamps.html">Explore Custom Glow Lamps <span aria-hidden="true">↗</span></a>
+      <p class="subtle">Starting at $40. Design and cart preview available now; checkout is coming soon.</p>
+    </div>
+  </article>
   <article class="feature">
     <div class="feature-visual" aria-hidden="true"><div class="ring"></div><div class="feature-stamp">Shake up the holidays with a fully custom, super special shaker ornament</div></div>
     <div class="feature-content"><span class="chip">Currently accepting orders</span><h3>Classroom keepsakes worth keeping.</h3><p>Custom shaker ornaments filled with personality—and the names that make each classroom its own little world. Choose your materials, dream up a theme, and we'll make it one-of-a-kind.</p><a class="btn btn-primary" href="Teacher-Ornaments-Form.html">Create your teacher ornament <span aria-hidden="true">↗</span></a><p class="subtle">Local pick-up / hand-off in Cypress for now.</p></div>
@@ -344,7 +365,7 @@ a.brand.brand-image{display:inline-flex;align-items:center;flex-shrink:0;line-he
  <div class="sidequest-inner"><details><summary><span>✦ An extremely serious research question <span class="small">(just for fun)</span></span><span aria-hidden="true">＋</span></summary><div class="poll-content"><p class="poll-lede">You unexpectedly have fifteen minutes to yourself. Obviously, you will…</p><div class="poll-options"><button class="poll-option" data-vote="0">🧹 Finally tackle that chore</button><button class="poll-option" data-vote="1">🚶 Go for a walk</button><button class="poll-option" data-vote="2">🍪 Find a snack immediately</button><button class="poll-option" data-vote="3">💌 Send GoodSaenz a wildly ambitious idea</button><button class="poll-option" data-vote="4">🛋️ Do absolutely nothing</button></div><div class="poll-result" id="poll-result" hidden aria-live="polite"><p id="poll-thanks">Vote recorded ✨</p><div id="poll-bars"></div></div><p class="poll-footnote">A completely unscientific little poll. Results stay on this device only.</p></div></details></div>
 </section>
 </main>
-<footer><div class="wrap footer-inner"><div><a class="brand brand-image" href="./"><img src="goodsaenz-wordmark.png" alt="GoodSaenz" width="224" height="62"></a><p class="footer-tag">Website developed by Nyna with questionable restraint and excellent Saenz. ✨</p></div><nav class="footer-links" aria-label="Footer links"><a href="Teacher-Ornaments-Form.html">Teacher ornaments</a><a href="mailto:nyna@goodsaenz.com">Get in touch</a><a href="#hero-title">Back to top ↑</a></nav></div></footer>
+<footer><div class="wrap footer-inner"><div><a class="brand brand-image" href="./"><img src="goodsaenz-wordmark.png" alt="GoodSaenz" width="224" height="62"></a><p class="footer-tag">Website developed by Nyna with questionable restraint and excellent Saenz. ✨</p></div><nav class="footer-links" aria-label="Footer links"><a href="Custom-Glow-Lamps.html">Custom Glow Lamps</a><a href="Teacher-Ornaments-Form.html">Teacher ornaments</a><a href="Cart.html">Cart preview</a><a href="mailto:nyna@goodsaenz.com">Get in touch</a><a href="#hero-title">Back to top ↑</a></nav></div></footer>
 </div>
 <script>
 (function(){
