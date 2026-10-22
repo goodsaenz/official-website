@@ -5,20 +5,23 @@
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
 
 
-/* GoodSaenz ornament-matched heading typography — 2026-10-22 */
-/* Uses the same display hierarchy as Teacher-Ornaments-Form: rounded bold
-   introductory titles and Joyful Soul on product-form section headings. */
-@font-face{
-  font-family: "Joyful Soul";
-  src: url("BFCJoyfulSoul(1).otf") format("opentype");
+/* GoodSaenz typography, matching the live teacher-ornament form.
+   Version 2026-10-22b. The customer must upload their own licensed font to
+   the SAME directory as this CSS file. In the current repository that is /.
+   Both filenames below are supported for convenience. */
+@font-face {
+  font-family: 'Joyful Soul';
+  src: local('BFC Joyful Soul'),
+       url('./BFCJoyfulSoul(1).otf') format('opentype'),
+       url('./BFCJoyfulSoul.otf') format('opentype');
   font-style: normal;
   font-weight: 400;
   font-display: swap;
 }
-/* Large, rounded intro headings as on the ornaments page. */
+/* Intro titles match the ornament page's bold rounded lettering. */
 .layout .intro h1,
-.cart-wrap .display-title{
-  font-family: ui-rounded, "SF Pro Rounded", "Segoe UI", system-ui, sans-serif;
+.cart-wrap .display-title {
+  font-family: ui-rounded, 'SF Pro Rounded', 'Segoe UI', system-ui, sans-serif;
   font-size: clamp(2.5rem, 6vw, 4.25rem);
   font-weight: 750;
   font-style: normal;
@@ -26,30 +29,29 @@
   line-height: .98;
   color: #654580;
 }
-/* Script headings for the lamp form and the shared cart panels. */
+/* Joyful Soul headings for lamp sections AND cart panels. */
 .layout form .card h2,
-.cart-wrap .card h2{
-  font-family: "Joyful Soul", ui-rounded, "SF Pro Rounded", system-ui, sans-serif;
+.cart-wrap .card h2 {
+  font-family: 'Joyful Soul', ui-rounded, 'SF Pro Rounded', system-ui, sans-serif;
   font-weight: 400;
+  font-style: normal;
   font-size: clamp(1.8rem, 3vw, 2.35rem);
-  line-height: 1.05;
+  line-height: 1.08;
   letter-spacing: 0;
 }
-/* Keep numbered badges, controls and secondary headings readable. */
-.card h2 .num{
-  font-family: ui-rounded, "SF Pro Rounded", "Segoe UI", system-ui, sans-serif;
+/* Keep the section numbers in readable, round, non-script lettering. */
+.card h2 .num {
+  font-family: ui-rounded, 'SF Pro Rounded', 'Segoe UI', system-ui, sans-serif;
   font-weight: 750;
   letter-spacing: 0;
   line-height: 1;
 }
-@media(max-width:580px){
+@media (max-width: 580px) {
   .layout form .card h2,
-  .cart-wrap .card h2{
-    font-size: clamp(1.25rem, 6.1vw, 1.78rem);
+  .cart-wrap .card h2 {
+    font-size: clamp(1.35rem, 6.1vw, 1.85rem);
     line-height: 1.18;
   }
   .layout .intro h1,
-  .cart-wrap .display-title{
-    font-size: clamp(2.5rem, 10vw, 3.6rem);
-  }
+  .cart-wrap .display-title { font-size: clamp(2.5rem, 10vw, 3.6rem); }
 }
