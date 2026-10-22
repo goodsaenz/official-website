@@ -247,6 +247,19 @@ footer{padding:26px 0 43px;border-top:1px solid #e4d6e9;background:#fff8;backdro
 .lamp-feature-visual img{position:relative;z-index:1;display:block;width:100%;height:100%;min-height:360px;max-height:450px;object-fit:contain;object-position:center;border:0}
 .lamp-feature-label{position:absolute;z-index:2;bottom:20px;left:20px;right:20px;padding:10px 15px;width:max-content;max-width:calc(100% - 40px);border-radius:13px;background:#fffef5eb;border:1px solid #e4cdec;box-shadow:0 6px 22px #5d4f7430;color:#634b7c;font-weight:800;font-size:clamp(12px,1.6vw,15px);text-align:center}
 @media(max-width:720px){.lamp-feature-visual img{min-height:280px;max-height:330px}.lamp-feature-label{bottom:14px;left:14px;right:14px;max-width:calc(100% - 28px)}}
+
+/* Three equal-level paths from the homepage into the GoodSaenz product lines. */
+.product-paths{margin:30px 0 0;max-width:540px}
+.product-paths-label{margin:0 0 13px!important;color:#604978!important;font-size:12px!important;font-weight:850;letter-spacing:.15em;text-transform:uppercase;line-height:1.4!important}
+.product-links{display:grid;grid-template-columns:minmax(0,1fr);gap:11px}
+.product-link{display:flex;align-items:center;justify-content:space-between;gap:18px;min-height:82px;padding:16px 18px;border:1.5px solid #d5bee5;border-radius:17px;background:rgba(255,255,255,.87);box-shadow:0 7px 23px rgba(80,60,104,.095);backdrop-filter:blur(9px);-webkit-backdrop-filter:blur(9px);text-decoration:none;transition:transform .2s,border-color .2s,box-shadow .2s}
+.product-link:hover{transform:translateY(-2px);border-color:#9f7dc3;box-shadow:0 10px 27px rgba(90,60,120,.16)}
+.product-link-copy{min-width:0;display:flex;flex-direction:column;gap:3px}
+.product-link-copy strong{display:block;color:#513a6b;font-size:17px;font-weight:850;line-height:1.25;letter-spacing:-.025em}
+.product-link-copy>span{display:block;color:#655d74;font-size:13px;font-weight:500;line-height:1.45}
+.product-link-arrow{display:grid;place-items:center;flex:none;width:35px;height:35px;border-radius:12px;background:linear-gradient(130deg,#e0f4ed,#eee0f8 62%,#f9ddeb);border:1px solid #dbcee8;color:#6a4d88;font-weight:800;font-size:19px}
+@media(max-width:720px){.product-paths{margin-top:29px}.product-link{padding:14px 15px;min-height:79px}.product-link-copy strong{font-size:16px}.product-link-copy>span{font-size:12.5px}}
+@media(prefers-reduced-motion:reduce){.product-link{transition:none}.product-link:hover{transform:none}}
 </style>
 <link rel="icon" type="image/png" sizes="64x64" href="/favicon.png?v=20261008b">
 <link rel="icon" type="image/x-icon" href="/favicon.ico?v=20261008b">
@@ -273,7 +286,23 @@ a.brand.brand-image{display:inline-flex;align-items:center;flex-shrink:0;line-he
  <div class="hero-copy">
   <h1 id="hero-title" class="hero-tagline"><span class="hero-line">Good stuff.</span><span class="hero-line">Good people.</span><span class="hero-line iris-text">GoodSaenz.</span></h1>
   <p>We are in the business of creativity, of dreaming up ideas and bringing them to life. From idea to first sketch to design to the real deal of cutting and painting and assembling, every GoodSaenz piece is brought to life with joy, with heart, and of course with a little chaotic creative energy. 🤠💞⚡️</p>
-  <div class="actions"><a class="btn btn-primary" href="Teacher-Ornaments-Form.html">Explore teacher ornaments <span aria-hidden="true">↗</span></a><a class="btn btn-secondary" href="Custom-Glow-Lamps.html">Explore glow lamps <span aria-hidden="true">✦</span></a><a class="btn btn-secondary" href="mailto:nyna@goodsaenz.com?subject=My%20GoodSaenz%20custom%20idea">Have a custom idea? <span aria-hidden="true">↗</span></a></div>
+  <nav class="product-paths" aria-label="Explore GoodSaenz creations">
+    <p class="product-paths-label">Explore our creations</p>
+    <div class="product-links">
+      <a class="product-link" href="Teacher-Ornaments-Form.html">
+        <span class="product-link-copy"><strong>Teacher Ornaments</strong><span>Personalized keepsakes for a whole class</span></span>
+        <span class="product-link-arrow" aria-hidden="true">↗</span>
+      </a>
+      <a class="product-link" href="Custom-Glow-Lamps.html">
+        <span class="product-link-copy"><strong>Custom Glow Lamps</strong><span>Personalized acrylic lamps, made to shine</span></span>
+        <span class="product-link-arrow" aria-hidden="true">↗</span>
+      </a>
+      <a class="product-link" href="mailto:nyna@goodsaenz.com?subject=My%20GoodSaenz%20custom%20idea">
+        <span class="product-link-copy"><strong>Custom Creations</strong><span>Have another idea? Let's dream it up together</span></span>
+        <span class="product-link-arrow" aria-hidden="true">↗</span>
+      </a>
+    </div>
+  </nav>
   <div class="tiny-note">Thoughtfully designed. Handmade in small batches. ✨</div>
  </div>
  <div class="hero-art" aria-label="Example of a handmade GoodSaenz ornament">
