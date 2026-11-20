@@ -6,7 +6,7 @@
 (function(global){
   'use strict';
   const KEY='goodsaenz-cart-preview-v1';
-  const PRICES={clear:{engrave:40,single:60,multi:80},color:{engrave:50,single:70,multi:90},special:{engrave:60,single:80,multi:100}};
+  const PRICES={clear:{engrave:40,single:50,multi:60},color:{engrave:50,single:60,multi:70},special:{engrave:60,single:70,multi:80}};
   const SHAPES={cloud:'Cloud',flowers:'Flower bouquet',western:'Cowboy boot & hat',basketball:'Basketball',heart:'Heart',butterfly:'Butterfly',custom:'Fully custom design'};
   const PLATES={clear:'Clear acrylic',color:'Translucent acrylic',special:'Specialty acrylic'};
   const FINISHES={engrave:'Engrave only',single:'Single-color UV resin',multi:'Multicolor UV resin'};
